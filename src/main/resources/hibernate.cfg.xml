@@ -4,15 +4,19 @@
         " http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/sshstudy</property>
+        <property name="connection.url">jdbc:mysql://139.129.9.3:3306/secret</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.c3p0.min_size">5</property>
         <property name="hibernate.c3p0.max_size">20</property>
         <property name="hibernate.c3p0.timeout">1800</property>
         <property name="hibernate.c3p0.max_statements">50</property>
-        <!--<mapping class="com.kim.sshstudy.model.TMenu"/>-->
-        <!--<mapping class="com.kim.sshstudy.model.TUser"/>-->
+        <mapping class="com.geekmadmen.secret.model.TDiary"/>
+        <mapping class="com.geekmadmen.secret.model.THobby"/>
+        <mapping class="com.geekmadmen.secret.model.TMood"/>
+        <mapping class="com.geekmadmen.secret.model.TMoodValue"/>
+        <mapping class="com.geekmadmen.secret.model.TUser"/>
+        <mapping class="com.geekmadmen.secret.model.TUserHobby"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
