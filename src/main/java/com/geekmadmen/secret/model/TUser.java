@@ -1,6 +1,7 @@
 package com.geekmadmen.secret.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by 伟阳 on 2016/3/9.
@@ -16,6 +17,7 @@ public class TUser {
     private String phone;
     private String email;
     private String register;
+    private Timestamp createTime;
 
     @Id
     @Column(name = "userId", nullable = false, length = 32)
@@ -127,5 +129,15 @@ public class TUser {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (register != null ? register.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "createTime", nullable = false)
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 }

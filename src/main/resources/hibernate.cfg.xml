@@ -17,6 +17,7 @@
         <mapping class="com.geekmadmen.secret.model.TMoodValue"/>
         <mapping class="com.geekmadmen.secret.model.TUser"/>
         <mapping class="com.geekmadmen.secret.model.TUserHobby"/>
+        <mapping class="com.geekmadmen.secret.model.TManager"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
