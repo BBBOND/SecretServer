@@ -20,7 +20,7 @@ public interface BaseDaoI<T> {
      * @param t
      * @return
      */
-    int delete(T t);
+    void delete(T t);
 
     /**
      * 更新
