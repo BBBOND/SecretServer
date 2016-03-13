@@ -5,6 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Map;
 /**
  * Created by 伟阳 on 2016/3/10.
  */
+@Repository("baseDao")
 public class BaseDaoImpl<T> implements BaseDaoI<T> {
 
     private SessionFactory sessionFactory;
