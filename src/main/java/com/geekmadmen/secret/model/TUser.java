@@ -18,6 +18,7 @@ public class TUser {
     private String email;
     private String register;
     private Timestamp createTime;
+    private String acticode;
 
     @Id
     @Column(name = "userId", nullable = false, length = 32)
@@ -99,6 +100,26 @@ public class TUser {
         this.register = register;
     }
 
+    @Basic
+    @Column(name = "createTime", nullable = false)
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    @Basic
+    @Column(name = "acticode", nullable = true, length = 255)
+    public String getActicode() {
+        return acticode;
+    }
+
+    public void setActicode(String acticode) {
+        this.acticode = acticode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,8 +135,9 @@ public class TUser {
         if (phone != null ? !phone.equals(tUser.phone) : tUser.phone != null) return false;
         if (email != null ? !email.equals(tUser.email) : tUser.email != null) return false;
         if (register != null ? !register.equals(tUser.register) : tUser.register != null) return false;
+        if (createTime != null ? !createTime.equals(tUser.createTime) : tUser.createTime != null) return false;
+        return acticode != null ? acticode.equals(tUser.acticode) : tUser.acticode == null;
 
-        return true;
     }
 
     @Override
@@ -128,16 +150,8 @@ public class TUser {
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (register != null ? register.hashCode() : 0);
+        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
+        result = 31 * result + (acticode != null ? acticode.hashCode() : 0);
         return result;
-    }
-
-    @Basic
-    @Column(name = "createTime", nullable = false)
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
     }
 }
