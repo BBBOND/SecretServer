@@ -46,14 +46,14 @@
         <!--<action name="xxx">-->
 
         <!--</action>-->
-       <action name="managerLogin" class="com.geekmadmen.secret.action.ManagerAction" method="login">
-           <result name="success">/WEB-INF/inc/success.jsp</result>
-           <result name="error" >/WEB-INF/inc/error.jsp</result>
-       </action>
-        <action name="managerselect" class="com.geekmadmen.secret.action.ManagerAction" method="selectUserById">
-            <result name="success">/WEB-INF/inc/success.jsp</result>
-            <result name="error" >/WEB-INF/inc/error.jsp</result>
-        </action>
+       <!--<action name="managerLogin" class="com.geekmadmen.secret.action.ManagerAction" method="login">-->
+           <!--<result name="success">/WEB-INF/inc/success.jsp</result>-->
+           <!--<result name="error" >/WEB-INF/inc/error.jsp</result>-->
+       <!--</action>-->
+        <!--<action name="managerselect" class="com.geekmadmen.secret.action.ManagerAction" method="selectUserById">-->
+            <!--<result name="success">/WEB-INF/inc/success.jsp</result>-->
+            <!--<result name="error" >/WEB-INF/inc/error.jsp</result>-->
+        <!--</action>-->
     </package>
 
 
