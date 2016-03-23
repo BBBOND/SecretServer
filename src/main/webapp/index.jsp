@@ -33,6 +33,14 @@
             });
 
         });
+        function addTab(opts) {
+            var t = $('#TT');
+            if (t.tabs('exists', opts.title)) {
+                t.tabs('select', opts.title);
+            } else {
+                t.tabs('add', opts);
+            }
+        }
     </script>
 
 </head>
@@ -45,45 +53,32 @@
 </div>
 <div data-options="region:'west'" style="width:200px;">
     <div class="easyui-panel" data-options="title:'功能导航',border:false,fit:true">
-        <div class="easyui-panel" style="padding:5px" data-options="fit:true,border:false">
-            <ul class="easyui-tree">
-                <li>
-                    <span onclick="alert($(this).innerHTML);">首页</span>
-                </li>
-                <li>
-                    <span>用户统计</span>
-                </li>
-                <li>
-                    <span>用户活跃度排行</span>
-                </li>
-                <li>
-                    <span>用户心情排行</span>
-                </li>
-            </ul>
-        </div>
+        <ul class="easyui-tree" id="tab-title" data-options="onClick:function(node){
+                        addTab({title:node.text,closable:true});
+
+         }">
+            <li>
+                <span>首页</span>
+            </li>
+            <li>
+                <span>用户统计</span>
+            </li>
+            <li>
+                <span>用户心情排行</span>
+            </li>
+            <li>
+                <span>用户活跃地区排行</span>
+            </li>
+        </ul>
     </div>
-
 </div>
-
 <div data-options="region:'center'">
-    <div id="index_centertab" class="easyui-tabs" data-options="fit:true,border:false">
-        <div title="首页" class="sub-con cur-sub-con" style="padding:20px;display:none;">
-            <a title="首页">首页</a>
-        </div>
-        <div title="用户统计" class="sub-con" style="padding:20px;display:none;">
-            <a title="用户统计">用户统计</a>
-        </div>
-        <div title="用户心情排行" style="padding:20px;display:none;">
-            <a title="用户心情排行">用户心情排行</a>
-        </div>
-        <div title="用户活跃度排行" style="padding:20px;display:none;">
-            <a title="用户活跃度排行">用户活跃度排行</a>
+    <div id="TT" class="easyui-tabs" data-options="fit:true,border:false">
+        <div title="首页" data-options="closable:true" style="padding:20px;display:block; ">
+            <a>首页</a>
         </div>
     </div>
 </div>
-<script>
-
-</script>
 <div class="easyui-dialog" style="width:300px;height:150px;" data-options="title:'登录',modal:true,
               buttons:[{
 				text:'登录',
