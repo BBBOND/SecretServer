@@ -3,6 +3,7 @@ package com.geekmadmen.secret.service.impl;
 import com.geekmadmen.secret.UImodel.Manager;
 import com.geekmadmen.secret.UImodel.User;
 import com.geekmadmen.secret.dao.ManagerDaoI;
+import com.geekmadmen.secret.dao.UserDaoI;
 import com.geekmadmen.secret.model.TManager;
 import com.geekmadmen.secret.model.TUser;
 import com.geekmadmen.secret.service.ManagerServiceI;
@@ -27,7 +28,21 @@ public class ManagerServiceImpl implements ManagerServiceI {
         logger.info("---------------------------> ManagerService do test");
     }
 
-    ManagerDaoI managerDao = null;
+    private ManagerDaoI managerDao;
+    private UserDaoI userDao;
+
+    public static Logger getLogger() {
+        return logger;
+    }
+
+    @Autowired
+    public UserDaoI getUserDao() {
+        return userDao;
+    }
+
+    public void setUserDao(UserDaoI userDao) {
+        this.userDao = userDao;
+    }
 
     public ManagerDaoI getManagerDao() {
         return managerDao;
@@ -44,34 +59,47 @@ public class ManagerServiceImpl implements ManagerServiceI {
     }*/
 
     public Manager login(Manager manager) {
-       /* logger.info("----------------------");
-        logger.info(manager.getManagerName());
-        logger.info("----------------------");
-        logger.info(manager.getManagerPassword());*/
-
         String hql = "from TManager tm where tm.managerName=:managerName and tm.managerPassword=:managerPassword";
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("managerName", manager.getManagerName());
         map.put("managerPassword", manager.getManagerPassword());
         TManager tManager = managerDao.get(hql, map);
-        /*logger.info("----------------------");
-        logger.info(tManager);*/
         if (tManager != null) {
             Manager manager1 = new Manager();
             BeanUtils.copyProperties(tManager, manager1);
-            return manager1;
+            return manager;
         } else
             return null;
     }
 
+    /*    @Override
+        public List<User> listAllUser() {
+            return null;
+        }
+
+        @Override
+        public User listUserById(int userId) {
+            return null;
+        }
+
+        @Override
+        public List<Manager> listAllManager() {
+            return null;
+        }
+
+        @Override
+        public Manager listManagerById(int managerId) {
+            return null;
+        }*/
     public List<User> listAllUser() {
         String hql = "from TUser t";
-        List<TUser> tUser = managerDao.getAllUser(hql);
+//        List<TUser> tUser = managerDao.getAllUser(hql);
+        List<TUser> tUser=userDao.find(hql);
         List<User> users = new ArrayList<User>();
-        if (tUser!=null&&tUser.size()>0){
-            for (TUser tu:tUser){
-                User user=new User();
-                BeanUtils.copyProperties(tu,user);
+        if (tUser != null && tUser.size() > 0) {
+            for (TUser tu : tUser) {
+                User user = new User();
+                BeanUtils.copyProperties(tu, user);
                 users.add(user);
             }
         }
@@ -79,11 +107,11 @@ public class ManagerServiceImpl implements ManagerServiceI {
     }
 
     public User listUserById(int userId) {
-        User user=new User();
-        String hql="from TUser t where t.userId="+userId;
-        TUser tUser=managerDao.getUser(hql);
-        if (tUser!=null){
-            BeanUtils.copyProperties(tUser,user);
+        User user = new User();
+        String hql = "from TUser t where t.userId=" + userId;
+        TUser tUser = userDao.get(hql);
+        if (tUser != null) {
+            BeanUtils.copyProperties(tUser, user);
         }
         return user;
     }
