@@ -34,18 +34,21 @@
 
         });
     </script>
+
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north'" style="height:100px;">
-    <div class="easyui-panel" data-options="title:'功能导航',border:false,fit:true"></div>
+    <div class="easyui-panel" data-options="title:'顶栏',border:false,fit:true"></div>
 </div>
-<div data-options="region:'south',title:'South Title'" style="height:100px;"></div>
+<div data-options="region:'south'" style="height:100px;">
+    <div class="easyui-panel" data-options="title:'底栏',border:false,fit:true"></div>
+</div>
 <div data-options="region:'west'" style="width:200px;">
     <div class="easyui-panel" data-options="title:'功能导航',border:false,fit:true">
         <div class="easyui-panel" style="padding:5px" data-options="fit:true,border:false">
             <ul class="easyui-tree">
                 <li>
-                    <span>首页</span>
+                    <span onclick="alert($(this).innerHTML);">首页</span>
                 </li>
                 <li>
                     <span>用户统计</span>
@@ -61,14 +64,26 @@
     </div>
 
 </div>
-<div data-options="region:'center',title:'center title'">
-    <div id="index_centertabs" class="easyui-tabs" data-options="fit:true,border:false">
-        <div title="首页" style="padding:20px;display:none;">
-            首页
+
+<div data-options="region:'center'">
+    <div id="index_centertab" class="easyui-tabs" data-options="fit:true,border:false">
+        <div title="首页" class="sub-con cur-sub-con" style="padding:20px;display:none;">
+            <a title="首页">首页</a>
+        </div>
+        <div title="用户统计" class="sub-con" style="padding:20px;display:none;">
+            <a title="用户统计">用户统计</a>
+        </div>
+        <div title="用户心情排行" style="padding:20px;display:none;">
+            <a title="用户心情排行">用户心情排行</a>
+        </div>
+        <div title="用户活跃度排行" style="padding:20px;display:none;">
+            <a title="用户活跃度排行">用户活跃度排行</a>
         </div>
     </div>
 </div>
+<script>
 
+</script>
 <div class="easyui-dialog" style="width:300px;height:150px;" data-options="title:'登录',modal:true,
               buttons:[{
 				text:'登录',
@@ -81,12 +96,12 @@
         <table>
             <tr>
                 <th>登录名</th>
-                <td><input name="manager.managerName" class="easyui-validatebox" type="text"
+                <td><input name="managerName" class="easyui-validatebox" type="text"
                            data-options="required:true,missingMessage:'登陆名必填'"/></td>
             </tr>
             <tr>
                 <th>密码</th>
-                <td><input name="manager.managerPassword" class="easyui-validatebox" type="password"
+                <td><input name="managerPassword" class="easyui-validatebox" type="password"
                            data-options="required:true,missingMessage:'密码必填'"/></td>
             </tr>
         </table>
