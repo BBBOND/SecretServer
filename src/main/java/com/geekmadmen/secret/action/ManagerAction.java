@@ -7,11 +7,9 @@ import com.geekmadmen.secret.service.ManagerServiceI;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.log4j.Logger;
+import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
@@ -19,10 +17,9 @@ import java.util.List;
 /**
  * Created by 东 on 2016/3/12.
  */
-@ParentPackage("basePackage")
-@SuppressWarnings("serial")
-@Controller("managerAction")
-@Scope("prototype")
+//@ParentPackage("basePackage")
+@Action("managerAction")
+//@Scope("prototype")
 @Namespace("/")
 public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
     ActionContext context = ActionContext.getContext();
@@ -44,24 +41,6 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
     }
 
     private ManagerServiceI managerService;
-    private int managerid;
-    private int userid;
-
-    public int getUserid() {
-        return userid;
-    }
-
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
-
-    public int getManagerid() {
-        return managerid;
-    }
-
-    public void setManagerid(int managerid) {
-        this.managerid = managerid;
-    }
 
     public ManagerServiceI getManagerService() {
         return managerService;
@@ -117,12 +96,7 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
         try {
             List<Manager> manager = managerService.listAllManager();
             if (manager != null && manager.size() > 0) {
-             /*   for (int i = 0; i < manager.size(); i++) {
-                    mg = manager.get(i);
-                    logger.info(mg.getManagerName());
-                    logger.info("----------------------");
-                    logger.info(mg.getManagerPassword());
-                }*/
+                json.setSuccess(true);
                 return manager;
             }
         } catch (Exception e) {
@@ -139,6 +113,7 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
         try {
             Manager manager = managerService.listManagerById(1);
             if (manager != null) {
+                json.setSuccess(true);
                 logger.info(manager.getManagerName());
                 logger.info("----------------------");
                 logger.info(manager.getManagerPassword());
@@ -159,6 +134,7 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
         try {
             List<User> userList=managerService.listAllUser();
             if (userList!=null&&userList.size()>0){
+                json.setSuccess(true);
                /* for (int i=0;i<userList.size();i++){
                     user=userList.get(i);
                     logger.info("----------------------");

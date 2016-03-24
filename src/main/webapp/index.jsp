@@ -23,7 +23,6 @@
                         msg: obj.msg,
                         showType: 'show'
                     });
-
                 }
             });
             $('#manager_login_loginForm input').bind('keyup', function (event) {
@@ -31,7 +30,6 @@
                     $('#manager_login_loginForm').submit();
                 }
             });
-
         });
         function addTab(opts) {
             var t = $('#TT');
@@ -42,7 +40,6 @@
             }
         }
     </script>
-
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north'" style="height:100px;">

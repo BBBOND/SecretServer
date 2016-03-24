@@ -30,7 +30,7 @@
     <!--对于WebLogic，Orion，OC4J此属性应该设置成true-->
     <constant name="struts.dispatcher.parametersWorkaround" value="true"/>
 
-    <package name="basePackage" extends="struts-default">
+    <package name="basePackage"  namespace="/" extends="struts-default">
         <!--<interceptors>-->
             <!--&lt;!&ndash;字符拦截器&ndash;&gt;-->
             <!--<interceptor name="encodingInterceptor" class="com.kim.sshstudy.interceptor.EncodingInterceptor"/>-->
@@ -42,18 +42,6 @@
         <!--&lt;!&ndash;拦截器栈&ndash;&gt;-->
         <!--<default-interceptor-ref name="encodingStack"></default-interceptor-ref>-->
     <!--</package>-->
-    <!--<package name="default" namespace="/" extends="struts-default">-->
-        <!--<action name="xxx">-->
-
-        <!--</action>-->
-       <!--<action name="managerLogin" class="com.geekmadmen.secret.action.ManagerAction" method="login">-->
-           <!--<result name="success">/WEB-INF/inc/success.jsp</result>-->
-           <!--<result name="error" >/WEB-INF/inc/error.jsp</result>-->
-       <!--</action>-->
-        <!--<action name="managerselect" class="com.geekmadmen.secret.action.ManagerAction" method="selectUserById">-->
-            <!--<result name="success">/WEB-INF/inc/success.jsp</result>-->
-            <!--<result name="error" >/WEB-INF/inc/error.jsp</result>-->
-        <!--</action>-->
     </package>
 
 
