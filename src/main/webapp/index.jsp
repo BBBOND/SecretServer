@@ -16,11 +16,11 @@
                 success: function (data) {
                     var obj = jQuery.parseJSON(data);
                     if (obj.success) {
-                        alert("success");
+                        $('#manager_login_loginDialog').dialog('close');
                     }
                     $.messager.show({
                         title: '提示',
-                        msg: obj.msg,
+                        msg: obj.message,
                         showType: 'show'
                     });
                 }
@@ -32,7 +32,7 @@
             });
         });
         function addTab(opts) {
-            var t = $('#TT');
+            var t = $('#index_tabs');
             if (t.tabs('exists', opts.title)) {
                 t.tabs('select', opts.title);
             } else {
@@ -70,13 +70,13 @@
     </div>
 </div>
 <div data-options="region:'center'">
-    <div id="TT" class="easyui-tabs" data-options="fit:true,border:false">
+    <div id="index_tabs" class="easyui-tabs" data-options="fit:true,border:false">
         <div title="首页" data-options="closable:true" style="padding:20px;display:block; ">
             <a>首页</a>
         </div>
     </div>
 </div>
-<div class="easyui-dialog" style="width:300px;height:150px;" data-options="title:'登录',modal:true,
+<div id="manager_login_loginDialog" class="easyui-dialog" style="width:300px;height:150px;" data-options="title:'登录',closable:false,
               buttons:[{
 				text:'登录',
 				iconCls:'icon-help',
@@ -88,7 +88,7 @@
         <table>
             <tr>
                 <th>登录名</th>
-                <td><input name="managerName" class="easyui-validatebox" type="text"
+                <td><input name="managerName" autofocus class="easyui-validatebox" type="text"
                            data-options="required:true,missingMessage:'登陆名必填'"/></td>
             </tr>
             <tr>
