@@ -24,7 +24,7 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
         this.sessionFactory = sessionFactory;
     }
 
-    private Session getCurrentSession() {
+    Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
@@ -146,4 +146,6 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
     public void flush() {
         getCurrentSession().flush();
     }
+
+
 }

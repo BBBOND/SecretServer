@@ -1,14 +1,15 @@
 package com.geekmadmen.secret.service.impl;
 
-import com.geekmadmen.secret.UImodel.Manager;
-import com.geekmadmen.secret.UImodel.User;
+import com.geekmadmen.secret.UImodel.*;
 import com.geekmadmen.secret.dao.ManagerDaoI;
+import com.geekmadmen.secret.dao.MoodDaoI;
 import com.geekmadmen.secret.dao.UserDaoI;
 import com.geekmadmen.secret.model.TManager;
 import com.geekmadmen.secret.model.TUser;
 import com.geekmadmen.secret.service.ManagerServiceI;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,16 +31,27 @@ public class ManagerServiceImpl implements ManagerServiceI {
 
     private ManagerDaoI managerDao;
     private UserDaoI userDao;
+    private MoodDaoI moodDao;
+
+    public MoodDaoI getMoodDao() {
+        return moodDao;
+    }
+
+    @Autowired
+    public void setMoodDao(MoodDaoI moodDao) {
+        this.moodDao = moodDao;
+    }
 
     public static Logger getLogger() {
         return logger;
     }
 
-    @Autowired
+
     public UserDaoI getUserDao() {
         return userDao;
     }
 
+    @Autowired
     public void setUserDao(UserDaoI userDao) {
         this.userDao = userDao;
     }
@@ -92,9 +104,9 @@ public class ManagerServiceImpl implements ManagerServiceI {
             return null;
         }*/
     public List<User> listAllUser() {
-        String hql = "from TUser t";
+    /*    String hql = "from TUser t";
 //        List<TUser> tUser = managerDao.getAllUser(hql);
-        List<TUser> tUser=userDao.find(hql);
+        List<TUser> tUser = userDao.find(hql);
         List<User> users = new ArrayList<User>();
         if (tUser != null && tUser.size() > 0) {
             for (TUser tu : tUser) {
@@ -102,8 +114,8 @@ public class ManagerServiceImpl implements ManagerServiceI {
                 BeanUtils.copyProperties(tu, user);
                 users.add(user);
             }
-        }
-        return users;
+        }*/
+        return null;
     }
 
     public User listUserById(int userId) {
@@ -148,5 +160,48 @@ public class ManagerServiceImpl implements ManagerServiceI {
 
     public int countOneAera() {
         return 0;
+    }
+
+    @Override
+    public DataGrid datagrid(User user) {
+        DataGrid dataGrid = new DataGrid();
+        String hql = "from TUser t";
+        String countHql = "select count(*) " + hql;
+        List<TUser> tUserList = userDao.find(hql, user.getPage(), user.getRows());
+        logger.info(user.getPage());
+        logger.info("-----------------");
+        logger.info(user.getRows());
+        List<User> userList = new ArrayList<User>();
+        if (tUserList != null && tUserList.size() > 0) {
+            for (TUser tUser : tUserList) {
+                User users = new User();
+                BeanUtils.copyProperties(tUser, users);
+                userList.add(users);
+            }
+        }
+        dataGrid.setTotal(userDao.count(countHql));
+        dataGrid.setRows(userList);
+        return dataGrid;
+    }
+
+    public Long userCount() {
+        String hql = "select count(*) from TUser t";
+        Long count = userDao.count(hql);
+        return count;
+    }
+
+    public List userCountByMood() {
+        String sql = "SELECT moodValue, COUNT(DISTINCT(id)) AS count\n" +
+                "FROM t_mood \n" +
+                "GROUP BY moodValue;";
+        try {
+            List list = moodDao.findInSql(sql);
+            if (list != null && list.size() > 0) {
+                return list;
+            }
+        } catch (BeansException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

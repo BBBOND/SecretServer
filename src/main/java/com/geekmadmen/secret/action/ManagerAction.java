@@ -31,6 +31,8 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
     }
 
     private Manager manager;
+//    private User user=new User();
+
 
     public Manager getManager() {
         return manager;
@@ -66,8 +68,14 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
     public void login() throws Exception {
         Json json = new Json();
         try {
+           /* logger.info("------------------------");
+            logger.info(manager.getManagerName());
+            logger.info("------------------------");
+            logger.info(manager.getManagerPassword());*/
             Manager mg = managerService.login(manager);
             if (mg != null) {
+               /* logger.info("------------------------");
+                logger.info(mg.getManagerName());*/
                 json.setSuccess(true);
                 json.setMessage("登录成功！");
                 context.getSession().put("managername", manager.getManagerName());
@@ -97,6 +105,7 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
             List<Manager> manager = managerService.listAllManager();
             if (manager != null && manager.size() > 0) {
                 json.setSuccess(true);
+                json.setMessage("成功");
                 return manager;
             }
         } catch (Exception e) {
@@ -114,6 +123,7 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
             Manager manager = managerService.listManagerById(1);
             if (manager != null) {
                 json.setSuccess(true);
+                json.setMessage("成功！");
                 logger.info(manager.getManagerName());
                 logger.info("----------------------");
                 logger.info(manager.getManagerPassword());
@@ -135,18 +145,20 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
             List<User> userList=managerService.listAllUser();
             if (userList!=null&&userList.size()>0){
                 json.setSuccess(true);
+                json.setMessage("成功！");
                /* for (int i=0;i<userList.size();i++){
                     user=userList.get(i);
                     logger.info("----------------------");
                     logger.info(user);
                     logger.info("----------------------");
                 }*/
+                super.writeJson(userList);
                 return userList;
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            super.writeJson(json);
+
         }
         return null;
     }
@@ -159,6 +171,7 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
                 logger.info(user.getUserName());
                 logger.info("----------------------");
                 logger.info(user.getUserPassword());
+                json.setMessage("成功！");
                 return user;
             }else {
                 return null;
@@ -170,4 +183,5 @@ public class ManagerAction extends BaseAction implements ModelDriven<Manager> {
         }
         return null;
     }
+
 }

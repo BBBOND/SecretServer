@@ -129,4 +129,18 @@ public class TMood {
         result = 31 * result + (moodValue != null ? moodValue.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "TMood{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", moodText='" + moodText + '\'' +
+                ", local='" + local + '\'' +
+                ", time=" + time +
+                ", weather='" + weather + '\'' +
+                ", tag='" + tag + '\'' +
+                ", moodValue=" + moodValue +
+                '}';
+    }
 }
