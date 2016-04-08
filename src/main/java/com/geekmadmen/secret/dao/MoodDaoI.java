@@ -15,4 +15,11 @@ public interface MoodDaoI extends BaseDaoI<TMood> {
      * @return
      */
     List findInSql(String sql);
+
+  /*  *//**
+     * 通过sql获取多条信息
+     * @param sql
+     * @return
+     *//*
+    List moodCountByLocal(String sql);*/
 }

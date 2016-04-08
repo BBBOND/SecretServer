@@ -83,4 +83,10 @@ public interface ManagerServiceI {
      * @return
      */
     List  userCountByMood();
+
+    /**
+     * 通过地区获取心情值
+     * @return
+     */
+    List moodCountByLocal();
 }

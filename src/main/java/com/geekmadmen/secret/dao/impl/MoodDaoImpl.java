@@ -29,4 +29,6 @@ public class MoodDaoImpl extends BaseDaoImpl<TMood> implements MoodDaoI {
             return null;
         }
     }
+
+
 }

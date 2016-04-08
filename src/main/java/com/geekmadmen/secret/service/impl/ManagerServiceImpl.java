@@ -204,4 +204,18 @@ public class ManagerServiceImpl implements ManagerServiceI {
         }
         return null;
     }
+
+    @Override
+    public List moodCountByLocal() {
+        String sql = "SELECT `local`,COUNT(moodValue)AS count FROM t_mood GROUP BY `local`;";
+        try {
+            List list = moodDao.findInSql(sql);
+            if (list != null && list.size() > 0) {
+                return list;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -62,4 +62,8 @@ public class ManagerUserAction extends BaseAction implements ModelDriven<User> {
 //        logger.info(list.get(0).getClass().getClasses());
         super.writeJson(list);
     }
+    public void moodCountByLocal(){
+        List list=managerService.moodCountByLocal();
+        super.writeJson(list);
+    }
 }
