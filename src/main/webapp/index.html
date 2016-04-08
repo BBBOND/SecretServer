@@ -1,42 +1,25 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
+<!DOCTYPE html>
+<html xmlns:onClick="http://www.w3.org/1999/xhtml" xmlns:addTab>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
     <script type="text/javascript" src="jslib/jquery-easyui-1.4.4/jquery.min.js"></script>
     <script type="text/javascript" src="jslib/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="jslib/jquery-easyui-1.4.4/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="jslib/jquery-easyui-1.4.4/src/jquery.tabs.js"></script>
 
     <link rel="stylesheet" href="jslib/jquery-easyui-1.4.4/themes/default/easyui.css" type="text/css">
     <link rel="stylesheet" href="jslib/jquery-easyui-1.4.4/themes/icon.css" type="text/css">
 
-    <script style="text/javascript" src="jslib/highcharts-js/highcharts.js"></script>
-
-    <script>
-        /*   $(function(){
-         $('#tab-title').tree({
-         onClick:function(node){
-         var url;
-         switch(node.text){
-         case '用户统计' : url = 'tabs/yhtj.html';break;
-         case '用户心情排行' : url = 'tabs/mood.html';break;
-         case '用户活跃地区排行' : url = 'tabs/area.html';break;
-         }
-         addTab({
-         title:node.text,
-         closable:true,
-         content: '<iframe src="' + url + '" iframeborder="0" style="border:0;width:100%;heigth:574px;"></iframe>'
-         });
-         }
-         });
-         });*/
-
+    <script type="text/javascript">
         function addTab(opts) {
-            var t = $('#index_tabs');
+            var t = $('#TT');
             if (t.tabs('exists', opts.title)) {
                 t.tabs('select', opts.title);
             } else {
                 t.tabs('add', opts);
             }
-        }
+        };
     </script>
 </head>
 <body class="easyui-layout">
@@ -48,13 +31,13 @@
 </div>
 <div data-options="region:'west'" style="width:200px;">
     <div class="easyui-panel" data-options="title:'功能导航',border:false,fit:true">
-        <%--<ul id="tab-title">--%>
         <ul class="easyui-tree" id="tab-title" data-options="onClick:function(node){
                         var url;
                         switch(node.text){
                             case '用户统计' : url = 'tabs/yhtj.html';break;
                             case '用户心情排行' : url = 'tabs/mood.html';break;
                             case '用户活跃地区排行' : url = 'tabs/area.html';break;
+                            case '首页' : url = 'tabs/first.html';break;
                         }
                         addTab({title:node.text,href:url,closable:true});
          }">
@@ -74,10 +57,9 @@
     </div>
 </div>
 <div data-options="region:'center'">
-    <div id="index_tabs" class="easyui-tabs" data-options="fit:true,border:false" style="overflow: hidden;">
-        <div title="首页" data-options="closable:false" style="padding:20px;display:block; overflow: hidden;"></div>
+    <div id="TT" class="easyui-tabs" data-options="fit:true,border:false">
+        <div title="首页" data-options="closable:true" style="padding:20px;display:block; "></div>
     </div>
 </div>
-<jsp:include page="admin/login.jsp"/>
 </body>
 </html>
