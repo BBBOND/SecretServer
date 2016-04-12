@@ -27,7 +27,7 @@
     </script>
 </head>
 <body>
-<div id="manager_login_loginDialog" class="easyui-dialog" style="width:300px;height:150px;" data-options="title:'登录',closable:false,
+<div id="manager_login_loginDialog" class="easyui-dialog" style="width:300px;height:150px;" data-options="title:'登录',closable:false,modal:true,
               buttons:[{
 				text:'登录',
 				iconCls:'icon-help',

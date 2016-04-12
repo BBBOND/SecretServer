@@ -52,15 +52,15 @@
         <ul class="easyui-tree" id="tab-title" data-options="onClick:function(node){
                         var url;
                         switch(node.text){
-                            case '用户统计' : url = 'tabs/yhtj.html';break;
+                            <%--case '用户统计' : url = 'tabs/yhtj.html';break;--%>
                             case '用户心情排行' : url = 'tabs/mood.html';break;
                             case '用户活跃地区排行' : url = 'tabs/area.html';break;
                         }
                         addTab({title:node.text,href:url,closable:true});
          }">
-            <li>
+           <%-- <li>
                 <span>首页</span>
-            </li>
+            </li>--%>
             <li>
                 <span>用户统计</span>
             </li>
@@ -75,7 +75,7 @@
 </div>
 <div data-options="region:'center'">
     <div id="index_tabs" class="easyui-tabs" data-options="fit:true,border:false" style="overflow: hidden;">
-        <div title="首页" data-options="closable:false" style="padding:20px;display:block; overflow: hidden;"></div>
+        <div title="用户统计" data-options="closable:false" style="padding:20px;display:block; overflow: hidden;"></div>
     </div>
 </div>
 <jsp:include page="admin/login.jsp"/>
