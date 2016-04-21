@@ -162,7 +162,7 @@ public class ManagerServiceImpl implements ManagerServiceI {
         return 0;
     }
 
-    @Override
+//    @Override
     public DataGrid datagrid(User user) {
         DataGrid dataGrid = new DataGrid();
         String hql = "from TUser t";
@@ -191,13 +191,30 @@ public class ManagerServiceImpl implements ManagerServiceI {
     }
 
     public List userCountByMood() {
-        String sql = "SELECT moodValue, COUNT(DISTINCT(id)) AS count\n" +
-                "FROM t_mood \n" +
-                "GROUP BY moodValue;";
+        int[] count = new int[100];
+        String sql = "SELECT moodValue ,COUNT(id) AS count FROM t_mood GROUP BY moodValue ORDER BY moodValue;";
         try {
             List list = moodDao.findInSql(sql);
+            for (int k = 1; k <= 100; k++) {
+                for (int i = 0; i < list.size(); i++) {
+                    Object[] o = (Object[]) list.get(i);
+//                    for (int j = 0; j < o.length; j++) {
+//                        System.out.print(o[j].toString() + "  ");
+                    if ((Integer.valueOf(o[0].toString())) == k) {
+                        count[k - 1] = Integer.valueOf(o[o.length - 1].toString());
+                         break;
+                    } else {
+                        count[k - 1] = 0;
+                    }
+                }
+//                System.out.println(count[k - 1]);
+//                System.out.println("\n----");
+            }
+            System.out.println(count.length);
             if (list != null && list.size() > 0) {
-                return list;
+                List ls=new ArrayList<>();
+                ls.add(count);
+                return ls;
             }
         } catch (BeansException e) {
             e.printStackTrace();
@@ -205,7 +222,7 @@ public class ManagerServiceImpl implements ManagerServiceI {
         return null;
     }
 
-    @Override
+//    @Override
     public List moodCountByLocal() {
         String sql = "SELECT `local`,COUNT(moodValue)AS count FROM t_mood GROUP BY `local`;";
         try {

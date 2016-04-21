@@ -16,8 +16,10 @@ public class TUser {
     private String userAvatar;
     private String phone;
     private String email;
+    //是否注册成功
     private String register;
     private Timestamp createTime;
+    //验证码
     private String acticode;
 
     @Id

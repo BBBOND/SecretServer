@@ -16,13 +16,13 @@ public class MoodDaoImpl extends BaseDaoImpl<TMood> implements MoodDaoI {
     public List findInSql(String sql) {
         SQLQuery query = getCurrentSession().createSQLQuery(sql);
         List list = query.list();
-        for (int i = 0; i < list.size(); i++) {
+       /* for (int i = 0; i < list.size(); i++) {
             Object[] o = (Object[]) list.get(i);
             for (int j = 0; j < o.length; j++) {
                 System.out.print(o[j].toString() + "  ");
             }
             System.out.println("\n----");
-        }
+        }*/
         if (list != null && list.size() > 0) {
             return list;
         } else {

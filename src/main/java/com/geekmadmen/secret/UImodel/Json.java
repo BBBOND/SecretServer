@@ -7,9 +7,17 @@ public class Json {
     private  boolean success=false;
     private  String message="";
     private Object object=null;
-
+    private int status=0;
     public boolean isSuccess() {
         return success;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public void setSuccess(boolean success) {
